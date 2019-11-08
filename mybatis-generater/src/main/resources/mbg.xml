@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- 指定数据库驱动 -->
+  <classPathEntry location="D:\jar\mysql\mysql-connector-java\5.1.47\mysql-connector-java-5.1.47.jar" />
+
+	<!-- 数据库连接参数 -->
+  <context id="DB2Tables" targetRuntime="MyBatis3" >
+	<!-- 注释生成 -->
+	<commentGenerator>
+		<property name="suppressDate" value="true"/>
+		<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		<property name="suppressAllComments" value="true"/>
+	</commentGenerator>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/ydma"
+        userId="root"
+        password="123456">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+	<!-- 指定实体类放哪 -->
+    <javaModelGenerator targetPackage="cn.xdl.ydma.entity1" targetProject="./src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+	<!-- 指定XML SQL文件放哪 -->
+    <sqlMapGenerator targetPackage="sql"  targetProject="./src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- 指定Mapper放哪 
+	 XMLMapper表示采用XML定义SQL;
+	 ANNOTATEDMAPPER表示采用注解定义SQL；-->
+    <javaClientGenerator type="ANNOTATEDMAPPER" 
+    	targetPackage="cn.xdl.ydma.dao1"  targetProject="./src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+	<!-- 根据哪个表创建实体类、SQL文件、Mapper -->
+    <table tableName="collect_course"  enableSelectByExample="false"
+    	enableDeleteByExample="false"  enableCountByExample="false"
+    	enableUpdateByExample="false">
+    </table>
+
+  </context>
+</generatorConfiguration>
